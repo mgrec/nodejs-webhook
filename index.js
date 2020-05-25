@@ -22,6 +22,7 @@ app.post('/deploy', function (req, res) {
     if (req.body.repository === undefined){
         res.status(500).send('Something broke!');
         res.end();
+        return false;
     }
 
     let time        = Math.floor(Date.now() / 1000);
