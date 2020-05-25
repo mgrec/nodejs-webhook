@@ -7,7 +7,7 @@ const fs            = require('fs');
 app.use(express.json());
 
 let options = {
-        host:'localhost',
+        host:'54.36.190.245',
         username:'root',
         path: 'git_temp',
         remoteDir: '/var/www/html/nodejs-wh-site/',
