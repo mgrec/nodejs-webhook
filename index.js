@@ -20,6 +20,7 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
     let time   = Math.floor(Date.now() / 1000);
+    console.log(req.body);
     let repo   = req.body.repository.html_url;
     let branch = gitCheck(req.body.ref);
     if (branch){
@@ -41,9 +42,10 @@ app.post('/', function (req, res) {
                     serverBase: config.path_upload
                 }).then(allDone => {
                     // Resolved When All File Uploaded
-                    console.log('Deploy : OK!');
                     exec('cd ..');
                     exec('rm -rf git_temp' + time);
+
+                    console.log('Deploy : OK!');
                 });
             });
         });
