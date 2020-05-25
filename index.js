@@ -19,15 +19,15 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-    let time   = Math.floor(Date.now() / 1000);
-    console.log(req.body);
-    let repo   = req.body.repository.html_url;
-    let branch = gitCheck(req.body.ref);
+    let time        = Math.floor(Date.now() / 1000);
+    let repo        = req.body.repository.html_url;
+    let repo_name   = req.body.repository.name;
+    let branch      = gitCheck(req.body.ref);
     if (branch){
         exec('mkdir git_temp_' + time);
         exec('cd git_temp' + time);
         exec('git clone -b dev '+ repo.toString() +' git_temp_' + time, (error, stdout, stderr) => {
-            fs.readFile('config/nodejs-webhook.json', (err, data) => {
+            fs.readFile('config/'+ repo_name +'.json', (err, data) => {
                 if (err) throw err;
                 let json = JSON.parse(data);
                 let config = json.config;
