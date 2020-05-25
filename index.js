@@ -71,7 +71,7 @@ app.post('/deploy', function (req, res) {
                 }).then(allDone => {
                     // Resolved When All File Uploaded
                     exec('cd ..');
-                    exec('rm -rf git_temp' + time);
+                    exec('rm -rf git_temp_' + time);
 
                     console.log('Deploy : OK!');
                 });
