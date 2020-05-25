@@ -1,5 +1,5 @@
 const express   = require('express');
-const exec      = require('child_process');
+const exec      = require('child_process').exec;
 const app       = express();
 
 app.use(express.json());
