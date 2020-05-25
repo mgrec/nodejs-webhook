@@ -18,6 +18,7 @@ app.get('/', function (req, res) {
 app.post('/', function (req, res) {
     console.log('new push');
     let repo   = req.body.html_url;
+    console.log(repo);
     let branch = gitCheck(req.body.ref);
     if (branch){
         exec('mkdir git_temp');
