@@ -8,7 +8,8 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
     console.log('new push');
-    console.log(req.body);
+    console.log(req.body.ref);
+    //console.log(req.body);
 });
 
 app.listen(8080, function () {
