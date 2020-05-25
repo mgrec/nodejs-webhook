@@ -14,7 +14,7 @@ let options = {
         excludedFolders: ['**/.git', 'node_modules', '.idea'],
         exclude: ['.gitignore', '.vscode/tasks.json'],
         privateKey: fs.readFileSync('rsa_key/upload_ci'),
-        passphrase: "maxime",
+        passphrase: fs.readFileSync('rsa_key/upload_ci.passphrase'),
         dryRun: false,
     },
     sftp = new SftpUpload(options);
