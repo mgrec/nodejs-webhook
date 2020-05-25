@@ -8,3 +8,10 @@
 
 ## Config
 
+- name (simple name)
+- host (IP)
+- port (Number)
+- user (SSH user)
+- password (SSH password)
+- path_upload
+- deploy_branch
