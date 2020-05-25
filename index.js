@@ -19,11 +19,12 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
+    let time   = Math.floor(Date.now() / 1000);
     let repo   = req.body.repository.html_url;
     let branch = gitCheck(req.body.ref);
     if (branch){
-        exec('mkdir git_temp');
-        exec('cd git_temp');
+        exec('mkdir git_temp_' + time);
+        exec('cd git_temp' + time);
         exec('git clone -b dev '+ repo.toString() +' git_temp', (error, stdout, stderr) => {
             uploader({
                 server: {
@@ -32,13 +33,13 @@ app.post('/', function (req, res) {
                     username: 'root',
                     password: 'E2l7ZczX'
                 },
-                locationBase: path.join(__dirname, 'git_temp'),
+                locationBase: path.join(__dirname, 'git_temp_' + time),
                 serverBase: '/var/www/html/nodejs-wh-site/'
             }).then(allDone => {
                 // Resolved When All File Uploaded
                 console.log('Deploy : OK!');
                 exec('cd ..');
-                exec('rm -rf git_temp');
+                exec('rm -rf git_temp' + time);
             });
         });
     }
