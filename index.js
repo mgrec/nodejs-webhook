@@ -13,7 +13,7 @@ let options = {
         remoteDir: '/var/www/html/nodejs-wh-site/',
         excludedFolders: ['**/.git', 'node_modules', '.idea'],
         exclude: ['.gitignore', '.vscode/tasks.json'],
-        privateKey: fs.readFileSync('rsa_key/upload_ci.pub'),
+        privateKey: fs.readFileSync('rsa_key/upload_ci'),
         passphrase: "maxime",
         dryRun: false,
     },
