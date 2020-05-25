@@ -5,6 +5,7 @@
     "port" : "22",
     "user" : "root",
     "password" : "E2l7ZczX",
-    "path_upload" : "/var/www/html/nodejs-wh-site/"
+    "path_upload" : "/var/www/html/nodejs-wh-site/",
+    "deploy_branch" : "dev"
   }
 }
