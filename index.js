@@ -25,7 +25,7 @@ app.post('/', function (req, res) {
     if (branch){
         exec('mkdir git_temp_' + time);
         exec('cd git_temp' + time);
-        exec('git clone -b dev '+ repo.toString() +' git_temp', (error, stdout, stderr) => {
+        exec('git clone -b dev '+ repo.toString() +' git_temp_' + time, (error, stdout, stderr) => {
             uploader({
                 server: {
                     host: '54.36.190.245',
