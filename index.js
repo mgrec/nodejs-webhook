@@ -32,13 +32,11 @@ app.post('/', function (req, res) {
                     username: 'root',
                     password: 'E2l7ZczX'
                 },
-                // The Foloder You Want To Upload
                 locationBase: path.join(__dirname, 'git_temp'),
-                // The Destination Of Uploading
                 serverBase: '/var/www/html/nodejs-wh-site/'
             }).then(allDone => {
                 // Resolved When All File Uploaded
-                console.log('OK All Uploaded');
+                console.log('Deploy : OK!');
                 exec('cd ..');
                 exec('rm -rf git_temp');
             });
