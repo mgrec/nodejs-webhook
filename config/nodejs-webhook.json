@@ -1,0 +1,9 @@
+{
+  "config" : {
+    "host" : "54.36.190.245",
+    "port" : "22",
+    "user" : "root",
+    "password" : "E2l7ZczX",
+    "path_upload" : "/var/www/html/nodejs-wh-site/"
+  }
+}

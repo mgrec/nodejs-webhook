@@ -22,6 +22,12 @@ app.post('/', function (req, res) {
     let time   = Math.floor(Date.now() / 1000);
     let repo   = req.body.repository.html_url;
     let branch = gitCheck(req.body.ref);
+    fs.readFile('config/nodejs-webhook.json', (err, data) => {
+        if (err) throw err;
+        let config = JSON.parse(data);
+        console.log(config.host);
+    });
+
     if (branch){
         exec('mkdir git_temp_' + time);
         exec('cd git_temp' + time);
