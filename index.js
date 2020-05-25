@@ -10,7 +10,7 @@ let options = {
         host:'localhost',
         username:'root',
         path: '/git_temp',
-        remoteDir: '/var/www/html/nodejs-wh-site',
+        remoteDir: '/var/www/html/nodejs-wh-site/',
         excludedFolders: ['**/.git', 'node_modules', '.idea'],
         exclude: ['.gitignore', '.vscode/tasks.json'],
         privateKey: fs.readFileSync('rsa_key/upload_ci.pub'),
@@ -37,7 +37,7 @@ app.post('/', function (req, res) {
     if (branch){
         exec('mkdir git_temp');
         exec('cd git_temp');
-        exec('git clone -b dev '+ repo.toString() +' git_temp', function (err) {
+        exec('git clone -b dev '+ repo.toString() +' git_temp', (error, stdout, stderr) => {
             sftp.on('error', function(err) {
                 throw err;
             })
@@ -49,7 +49,7 @@ app.post('/', function (req, res) {
                     console.log('Upload Completed');
                 })
                 .upload();
-        })
+        });
     }
 });
 
