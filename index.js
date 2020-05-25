@@ -19,6 +19,11 @@ app.get('/', function (req, res) {
 });
 
 app.post('/deploy', function (req, res) {
+    if (req.body.repository === undefined){
+        res.status(500).send('Something broke!');
+        res.end();
+    }
+
     let time        = Math.floor(Date.now() / 1000);
     let repo        = req.body.repository.html_url;
     let repo_name   = req.body.repository.name;
