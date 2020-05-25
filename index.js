@@ -1,23 +1,24 @@
 const express       = require('express');
 const exec          = require('child_process').exec;
 const app           = express();
-const SftpUpload    = require('sftp-upload');
 const fs            = require('fs');
+const client        = require('ssh2-sftp-client');
+const SftpUpload    = require('sftp-upload');
 
-app.use(express.json());
-
-let options = {
+var options = {
         host:'54.36.190.245',
         username:'root',
         path: 'git_temp',
-        remoteDir: '/var/www/html/nodejs-wh-site/',
-        excludedFolders: ['**/.git', 'node_modules', '.idea'],
+        remoteDir: '/var/www/html/nodejs-wh-site',
+        excludedFolders: ['**/.git', 'node_modules'],
         exclude: ['.gitignore', '.vscode/tasks.json'],
-        privateKey: fs.readFileSync('rsa_key/upload_ci'),
+        privateKey: fs.readFileSync('./rsa_key/upload_ci'),
         passphrase: "maxime",
         dryRun: false,
     },
     sftp = new SftpUpload(options);
+
+app.use(express.json());
 
 function gitCheck(branch){
     if(branch == "refs/heads/dev") {
@@ -31,7 +32,6 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-    //console.log('new push');
     let repo   = req.body.repository.html_url;
     let branch = gitCheck(req.body.ref);
     if (branch){
