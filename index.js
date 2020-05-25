@@ -31,7 +31,7 @@ app.post('/', function (req, res) {
                 username: 'root',
                 password: 'E2l7ZczX'
             }).then(() => {
-                return sftp.list('/pathname');
+                return sftp.list('/var/www/html/nodejs-wh-site');
             }).then(data => {
                 console.log(data, 'the data info');
             }).catch(err => {
