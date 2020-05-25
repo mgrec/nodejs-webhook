@@ -1,5 +1,7 @@
-const express = require('express');
-const app = express();
+const express   = require('express');
+const exec      = require('child_process');
+const app       = express();
+
 app.use(express.json());
 
 function gitCheck(branch){
@@ -15,8 +17,13 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
     console.log('new push');
+    let repo   = req.body.html_url;
     let branch = gitCheck(req.body.ref);
-    console.log(branch)
+    if (branch){
+        exec('mkdir git_temp');
+        exec('cd git_temp');
+        exec('git clone -b dev '+ repo.toString() +' git_temp')
+    }
 });
 
 app.listen(8080, function () {
