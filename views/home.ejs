@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Save new configuration</h1>
+    <form method="post" action="save-config">
+        <label for="name">Name:</label>
+        <input name="name" id="name" type="text" />
+
+        <label for="repo">Repo Name:</label>
+        <input name="repo" id="repo" type="text" />
+
+        <label for="host">Host:</label>
+        <input name="host" id="host" type="text" />
+
+        <label for="port">Port:</label>
+        <input name="port" id="port" type="text" />
+
+        <label for="user">User:</label>
+        <input name="user" id="user" type="text" />
+
+        <label for="password">Password:</label>
+        <input name="password" id="password" type="password" />
+
+        <label for="path">Path Upload:</label>
+        <input name="path" id="path" type="text" />
+
+        <label for="branch">Branch Deploy:</label>
+        <input name="branch" id="branch" type="text" />
+
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>

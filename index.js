@@ -4,8 +4,11 @@ const app           = express();
 const fs            = require('fs');
 const uploader      = require('sftp-folder-upload');
 const path          = require('path');
+const bodyParser    = require('body-parser');
 
 app.use(express.json());
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 function gitCheck(branch){
     if(branch == "refs/heads/dev") {
@@ -15,7 +18,25 @@ function gitCheck(branch){
 }
 
 app.get('/', function (req, res) {
-    res.send('Hello World!')
+    //res.send('Hello World!')
+    res.render("home.ejs");
+});
+
+app.post('/save-config', function (req, res) {
+    console.log(req.body);
+    let json = {"config" : {"name" : req.body.name.toString(), "host" : req.body.host.toString(), "port" : req.body.port.toString(),"user" : req.body.user.toString(), "password" : req.body.password.toString(), "path_upload" : req.body.path.toString(), "deploy_branch" : req.body.branch.toString()}};
+    let jsonContent = JSON.stringify(json);
+
+    fs.writeFile("./config/" + req.body.repo.toString()+ ".json", jsonContent, 'utf8', function (err) {
+        if (err) {
+            console.log("An error occured while writing JSON Object to File.");
+            return console.log(err);
+        }
+        res.writeHead(302, {
+            'Location': '/'
+        });
+        res.end();
+    });
 });
 
 app.post('/deploy', function (req, res) {
