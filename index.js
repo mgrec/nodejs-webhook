@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 function gitCheck(branch){
-    if(branch == "refs/heads/dev") {
+    if (branch === "refs/heads/dev") {
         return true;
     }
     return false;
