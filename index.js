@@ -25,7 +25,7 @@ app.post('/', function (req, res) {
     fs.readFile('config/nodejs-webhook.json', (err, data) => {
         if (err) throw err;
         let config = JSON.parse(data);
-        console.log(config.host);
+        console.log(config.config.host);
     });
 
     if (branch){
