@@ -2,8 +2,8 @@ const express       = require('express');
 const exec          = require('child_process').exec;
 const app           = express();
 const fs            = require('fs');
-const Client = require('ssh2-sftp-client');
-const sftp = new Client();
+const uploader      = require('sftp-folder-upload');
+const path          = require('path');
 
 app.use(express.json());
 
@@ -25,18 +25,20 @@ app.post('/', function (req, res) {
         exec('mkdir git_temp');
         exec('cd git_temp');
         exec('git clone -b dev '+ repo.toString() +' git_temp', (error, stdout, stderr) => {
-            sftp.connect({
-                host: '54.36.190.245',
-                port: '22',
-                username: 'root',
-                password: 'E2l7ZczX'
-            }).then(() => {
-                return sftp.put('/var/www/html/nodejs-wh/git_temp/', '/var/www/html/nodejs-wh-site/');
-                //return sftp.list('/var/www/html/nodejs-wh-site');
-            }).then(data => {
-                console.log(data, 'the data info');
-            }).catch(err => {
-                console.log(err, 'catch error');
+            uploader({
+                server: {
+                    host: '54.36.190.245',
+                    port: '22',
+                    username: 'root',
+                    password: 'E2l7ZczX'
+                },
+                // The Foloder You Want To Upload
+                locationBase: path.join(__dirname, 'git_temp'),
+                // The Destination Of Uploading
+                serverBase: '/var/www/html/nodejs-wh-site/'
+            }).then(allDone => {
+                // Resolved When All File Uploaded
+                console.log('OK All Uploaded');
             });
         });
     }
