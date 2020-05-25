@@ -1,5 +1,6 @@
 {
   "config" : {
+    "name" : "nodejs-webhook-dev",
     "host" : "54.36.190.245",
     "port" : "22",
     "user" : "root",

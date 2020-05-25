@@ -18,7 +18,7 @@ app.get('/', function (req, res) {
     res.send('Hello World!')
 });
 
-app.post('/', function (req, res) {
+app.post('/deploy', function (req, res) {
     let time        = Math.floor(Date.now() / 1000);
     let repo        = req.body.repository.html_url;
     let repo_name   = req.body.repository.name;
@@ -50,6 +50,7 @@ app.post('/', function (req, res) {
             });
         });
     }
+    res.status(200)
 });
 
 app.listen(8080, function () {
