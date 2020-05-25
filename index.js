@@ -39,6 +39,8 @@ app.post('/', function (req, res) {
             }).then(allDone => {
                 // Resolved When All File Uploaded
                 console.log('OK All Uploaded');
+                exec('cd ..');
+                exec('rm -rf git_temp');
             });
         });
     }
