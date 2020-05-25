@@ -9,7 +9,7 @@ app.use(express.json());
 let options = {
         host:'localhost',
         username:'root',
-        path: '/git_temp',
+        path: 'git_temp',
         remoteDir: '/var/www/html/nodejs-wh-site/',
         excludedFolders: ['**/.git', 'node_modules', '.idea'],
         exclude: ['.gitignore', '.vscode/tasks.json'],
